@@ -1,0 +1,95 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px;
+font-family:'calibri',sans-serif;
+font-size: 14px;color: #3a3a3a;
+background-color: #fff;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.navbar-inverse{background-color: #f9f9f9;
+    border-color: #f9f9f9;
+    min-height: 55px;
+    border-bottom: 1px #c9c9c9 solid;}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+.navbar-inverse .navbar-toggle{background:#0098da}
+
+.caption {
+    text-align: center;
+    height: 155px;
+    min-height:155px;
+    background-color: #f9f9f9;
+    border: 1px #eee solid;
+}
+
+.caption h4 {
+    /**white-space: nowrap;**/
+    font-size: 15px;
+    
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+.old-price{text-decoration: line-through;color: #555;font-size: 14px;}
+.new-price{color: green;font-size: 17px;}
+
+
+.product_detail .old-price{text-decoration: line-through;color: #666;font-size: 17px;}
+.product_detail .new-price{color: green;font-size: 24px;}
+.blog-box{border:1px #e9e9e9 solid;padding: 7px;margin-bottom: 10px;}
+.blog-box h4 a{font-size: 15px;}
+.blog-box img{}
+.blog-box p{font-size: 13px; color: #666;}
+footer {
+    margin: 50px 0;
+}
+
+
+
+/** Rm ad**/
+.rm-campaign-body .rm-product-horizontal-horizontal-box{width: 187px;margin: 0px 32px 0 0;text-align: center;border:1px #ddd solid;background-color: #eee;}
+.rm-campaign-body .rm-product-horizontal-img{width: 185px;}
+.rm-campaign-body .rm-product-horizontal-img img{width: 184px;height: 160px;}
+.rm-product-horizontal-text{font-family:'calibri',sans-serif;}
+.rm-campaign-body  .rm-product-horizontal-horizontal-box:last-child { margin-right: -32px; }
+.rm-product-horizontal-text .rm-product-horizontal-title{color: #333;font-size: 14px;}
+.rm-product-horizontal-text .rm-product-horizontal-price{color: green;font-size: 15px;font-weight: normal;}
+.rm_campaign_horizontal .rm-campaign-horizontal-header {margin-bottom: 15px;}
+
+.rm_campaign_display #rm_300x250_ad {width: 275px;}
+.rm_campaign_display{font-family: "calibri";}
+.rm_campaign_display #rm_300x250_ad .title {font-family: "calibri";}
+.rm_campaign_display #rm_300x250_ad a {padding: 5px 16px;margin-top: 15px;font-size: 16px;}
+.rm_campaign_display #rm_300x250_ad_left .new-price{color: green;font-size: 17px;}

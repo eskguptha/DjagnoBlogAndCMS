@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Demo Store</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'blog_list' %}"><img src="/static/images/auto-car/logo.png"  class="img-responsive " width="50%" /></a>
+            </div>
+            <form class="navbar-form navbar-right" action="{% url 'blog_search' %}">
+            <div class="form-group">
+              <input  id="id_q" name="q" type="text" placeholder="Search for over 391 products" value="{{ form.q.value }}" class="form-control" size="50">
+              <input id="id_models_0" class="hide" name="models" type="checkbox" value="catalog.product" />
+            </div>
+            <button type="submit" class="btn btn-info">Search <i class="fa fa-search"></i></button>
+          </form>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="{% url 'catalog_list' %}" class="list-group-item active">All Categories</a>
+                {% for each in object_list %}
+                <a href="{% url 'view_catalog' each.id %}" class="list-group-item">{{each}}</a>
+                {%endfor%}
+            </div>
+            <!-- 300x250-->
+            <div><a href=""><img src="/static/images/auto-car/300x250.png" class="img-thumbnail" /></a></div>
+            <!-- 300x250 -->
+
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                    <div class="col-md-12" style="padding:15px;">
+                        <!---Rm Category ad -->
+                        <div class="rm_campaign_horizontal" data-mp-no-products="4" data-mp-campaign-type="search" data-mp-search-value="{{ form.q.value }}"></div>
+                        <!-- end-->
+                    </div>
+                </div>
+
+
+            <div class="row">
+                 {% if query %}
+                {% for result in page.object_list %}
+
+                
+                    <div class="col-md-12 ">
+                        <div class="blog-box">
+                        <div class="row ">
+                            <div class=" col-md-3">
+                                <a href="{% url 'view_post'  result.object.id %}"><img src="{{result.object.image}}" alt=""  class="img-thumbnail"></a>
+                            </div>
+                            <div class="col-md-9">
+
+                                 <h4 class=""><a href="{% url 'view_post' result.object.id %}">{{result.object.name |slice:"125"}}<br/>
+                                 <small>({{result.object.vendor}}) | {% now "Y-M-d f" %}</small></a>
+                                    </h4>
+                                  
+                                {{result.object.description|slice:":225"|safe}}.
+                                    <p class="text-right">
+                                    <br/>
+                                        <a href="{% url 'view_post' result.object.id %}" class="btn btn-info btn-sm pull-right">Read More</a></p>
+                                    
+
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% empty %}
+            <pre>No results found.</pre>
+        {% endfor %}
+                </div> 
+
+           <div class="row">
+            <div class="col-md-12">
+                {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+            <pre>No results found.</pre>
+        {% endif %}
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy;  Demo Store 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://ads.revenuemantra.com/static/js/rmclient.min.js"></script> 
+<script type="text/javascript">
+    RmClient.init("aa89a7348aaff7ead82d795c9fe92800");
+</script>
+   
+</body>
+
+
+
+</html>

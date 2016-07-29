@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Demo Store</title>
+    <style type="text/css">
+    #carousel-example-generic img{height: 300px;}
+    </style>
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    .rm-product-vertical-box{width: 100%;}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'blog_list' %}"><img src="/static/images/auto-car/logo.png"  class="img-responsive " width="50%" /></a>
+            </div>
+            <form class="navbar-form navbar-right" action="{% url 'blog_search' %}">
+            <div class="form-group">
+              <input  id="id_q" name="q" type="text" placeholder="Search for over 391 products" value="{{ form.q.value }}" class="form-control" size="50">
+              <input id="id_models_0" class="hide" name="models" type="checkbox" value="catalog.product" />
+            </div>
+            <button type="submit" class="btn btn-info">Search <i class="fa fa-search"></i></button>
+          </form>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="{% url 'blog_list' %}" class="list-group-item active">Blog Categories</a>
+                    {% for each in object_list %}
+                    <a   href="{% url 'view_blog' each.id %}" class="{% if cid %} {% if cid == each.id %}{%endif%}text-danger {%endif%}list-group-item" {% if category_data %} {% if category_data.id == each.id %}style="color:#31b0d5;"{%endif%} {%endif%}>{{each |title}}</a>
+                    {%endfor%}
+                </div>
+                <!-- 300x250-->
+                <div>
+                    
+                <div class="rm_campaign_display" data-mp-campaign-type="onsite" data-mp-size="300x250"></div>
+
+                </div>
+                <!-- 300x250 -->
+
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+
+                    <div class="row">
+                    <div class="col-md-12" >
+                        <!---Rm Category ad -->
+                       
+                        <!-- end-->
+                    </div>
+                </div>
+                <ul id="newStuff" class="nav nav-tabs nav-stacked">
+                {% for each_post in post_list %}
+                <li >
+                    <div class="col-md-12 ">
+                        <div class="blog-box">
+                        <div class="row ">
+                            <div class=" col-md-3">
+                                <a href="{% url 'view_post'  each_post.id %}"><img src="{{each_post.image}}" alt=""  class="img-thumbnail"></a>
+                            </div>
+                            <div class="col-md-9">
+
+                                 <h4 class=""><a href="{% url 'view_post' each_post.id %}">{{each_post.name |slice:"125"}}<br/>
+                                 <small>({{each_post.vendor}}) | {% now "Y-M-d f" %}</small></a>
+                                    </h4>
+                                  
+                                {{each_post.description|slice:":225"|safe}}..
+                                    <p class="text-right">
+                                    <br/>
+                                        <a href="{% url 'view_post' each_post.id %}" class="btn btn-info btn-sm pull-right">Read More</a></p>
+                                    
+
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </li>
+                    {%endfor%}
+                    </ul>
+                   <div class="row">
+                    <div class="col-md-12">
+                        <div class="pagination pagination-large">
+                            <ul class="pager"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy;  Demo Store 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+
+$(document).ready(function() {
+
+var listElement = $('#newStuff');
+
+var perPage = 12; 
+var numItems = listElement.children().size();
+var numPages = Math.ceil(numItems/perPage);
+
+$('.pager').data("curr",0);
+
+var curr = 0;
+while(numPages > curr){
+  $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo('.pager');
+  curr++;
+}
+
+$('.pager .page_link:first').addClass('active');
+
+listElement.children().css('display', 'none');
+listElement.children().slice(0, perPage).css('display', 'block');
+
+$('.pager li a').click(function(){
+  var clickedPage = $(this).html().valueOf() - 1;
+  goTo(clickedPage,perPage);
+});
+
+function previous(){
+  var goToPage = parseInt($('.pager').data("curr")) - 1;
+  if($('.active').prev('.page_link').length==true){
+    goTo(goToPage);
+  }
+}
+
+function next(){
+  goToPage = parseInt($('.pager').data("curr")) + 1;
+  if($('.active_page').next('.page_link').length==true){
+    goTo(goToPage);
+  }
+}
+
+function goTo(page){
+  var startAt = page * perPage,
+    endOn = startAt + perPage;
+  
+  listElement.children().css('display','none').slice(startAt, endOn).css('display','block');
+  $('.pager').attr("curr",page);
+}
+});
+</script>
+
+
+</body>
+
+</html>
