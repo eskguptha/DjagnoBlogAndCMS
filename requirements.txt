@@ -4,6 +4,6 @@ argparse==1.2.1
 django-haystack==2.4.1
 elasticsearch==2.3.0
 selenium==2.53.6
-urllib3==1.16
+urllib3==1.26.5
 wsgiref==0.1.2
 
